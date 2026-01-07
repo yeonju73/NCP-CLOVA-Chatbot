@@ -149,7 +149,26 @@ inputTextArea.addEventListener('keydown', sendHandler)
 // button 이벤트 핸들러
 button.addEventListener('click', sendHandler);
 
+document.querySelector(".close-button").addEventListener('click', () => {
+    document.querySelector(".modal").classList.add("modal-show");
+})
 
+document.querySelector(".modal").addEventListener('click', () => {
+    document.querySelector(".modal").classList.remove("modal-show");
+})
+
+document.querySelector(".modal-window").addEventListener('click', (event) => {
+    event.stopPropagation();
+})
+
+document.querySelector("#no-button").addEventListener('click', () => {
+    document.querySelector(".modal").classList.remove("modal-show");
+})
+
+document.querySelector("#yes-button").addEventListener('click', () => {
+    document.querySelector(".chatgroup").innerHTML = "";
+    document.querySelector(".modal").classList.remove("modal-show");
+})
 
 
 initThemeToggle();
