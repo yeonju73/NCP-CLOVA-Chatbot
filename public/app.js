@@ -2,7 +2,7 @@ import { chatbotApi } from './api/api.js';
 
 //addEventListener() // 버튼 클릭 -> input 긁어와서 api 요청 보내기
 const inputTextArea = document.getElementById('send-message')
-const button = document.querySelector('button')
+const button = document.querySelector('.send-button')
 
 const sendMessage = async () => {
         const inputText = inputTextArea.value.trim();
