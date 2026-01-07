@@ -30,13 +30,14 @@ const sendMessage = async () => {
         waitStartBotMessage();
 
         const chatbotResult = await callChatbotApi(inputText);
-
+        console.log(chatbotResult);
+        
         // 대기 중 말풍선 소멸
         await waitEndBotMessage();
         
         // 챗봇 말풍선 생성
-        if (chatbotResult === null) {
-            addBotMessage("현재 챗봇 응답이 불가능합니다.");
+        if (chatbotResult === null || typeof chatbotResult !== "string") {
+            addBotMessage("아직 해당 질문에 대한 답변을 찾지 못했어요 😢\n조금 다르게 표현해서 다시 물어봐 주세요!");
             return;
         }
         addBotMessage(chatbotResult);
