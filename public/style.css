@@ -1,0 +1,111 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --chat-background-color : #EFEFEF;
+    --chat-bot-ballon-color : #FFFFFF;
+    --chat-user-ballon-color : #5C6DFF;
+    --chat-input-background-color : #F6F8FE;
+    --chat-input-field-color : #FFFFFF;
+    --chat-input-button-color : #9499A0;
+}
+
+body {
+    margin : 0;
+}
+
+header {
+    background-color : var(--chat-background-color);
+    width : 100%;
+    height : 45px;
+
+    position : fixed;
+    top : 0;
+    left : 0;
+}
+
+chatgroup {
+    display : block;
+    width : 100%;
+    min-height: calc(100vh - 45px);
+    margin-top : 45px;
+
+    background-color: var(--chat-background-color);
+}
+
+.chat-div {
+    width : 100%;
+    padding : 1rem;
+    display : flex;
+}
+
+.chat-div-left {
+    float : left;
+}
+
+.chat-div-right {
+    float : right;
+}
+
+.ballon {
+    width : 40%;
+    height : 100px;
+    border-radius: 5px;
+}
+
+.chatbot-ballon {
+    background-color: var(--chat-bot-ballon-color);
+}
+
+.user-ballon {
+    background-color: var(--chat-user-ballon-color);
+}
+
+chatinput {
+    display : block;
+    background-color: var(--chat-input-background-color);
+    width : 100%;
+    height : 4rem;
+    padding : 1rem;
+
+    position : fixed;
+    bottom : 0;
+}
+
+.chat-inputfield {
+    width : 100%;
+    height : 100%;
+    border-radius: 5px;
+    background-color: var(--chat-input-field-color);
+    padding : 5px;
+
+    display : flex;
+    justify-content: center;
+}
+
+textarea {
+    width : 95%;
+    border : none;
+    resize: none;
+    overflow: hidden;
+}
+
+textarea:focus {
+    outline : none;
+}
+
+.send-button {
+    width : 5%;
+    border : none;
+    background-color: var(--chat-input-field-color);
+    cursor: pointer;
+}
+
+/* 
+    배경색 #EFEFEF
+    챗봇 말풍선 #FFFFFF -> 내부글자 검정
+    내 말풍선 #5C6DFF -> 내부글자 화이드
+    입력창 겉에는 #F6F8FE, 찐입력창은 #FFFFFF
+    전송버튼 #9499A0
+ */
