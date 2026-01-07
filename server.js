@@ -1,5 +1,5 @@
 import express from 'express';
-import { sendToChatbot } from './public/app.js';
+import { sendToChatbot } from './api.js';
 
 const app = express();
 app.use(express.static('public'));
