@@ -37,7 +37,7 @@ const sendMessage = async () => {
         
         // 챗봇 말풍선 생성
         if (chatbotResult === null || typeof chatbotResult !== "string") {
-            addBotMessage("아직 해당 질문에 대한 답변을 찾지 못했어요 😢\n조금 다르게 표현해서 다시 물어봐 주세요!");
+            addBotMessage("현재 서버와 연결이 원활하지 않아요 😥\n잠시 후 다시 시도해 주세요.");
             return;
         }
         addBotMessage(chatbotResult);
@@ -215,8 +215,3 @@ document.querySelector("#yes-button").addEventListener('click', () => {
     initFormattedDate();
     document.querySelector(".modal").classList.remove("modal-show");
 })
-
-
-initThemeToggle();
-initScrollButton();
-initFormattedDate();
