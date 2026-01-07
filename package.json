@@ -1,0 +1,26 @@
+{
+  "name": "ncp-clova-chatbot",
+  "version": "1.0.0",
+  "description": "우리FISA NCP CLOVA Chatbot 프로젝트입니다.",
+  "homepage": "https://github.com/yeonju73/NCP-CLOVA-Chatbot#readme",
+  "bugs": {
+    "url": "https://github.com/yeonju73/NCP-CLOVA-Chatbot/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yeonju73/NCP-CLOVA-Chatbot.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "axios": "^1.13.2",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1"
+  }
+}
