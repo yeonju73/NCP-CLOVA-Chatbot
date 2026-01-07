@@ -3,18 +3,18 @@ export const chatbotApi = async (payload) => {
     try {
         const response = await fetch(url, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(payload)
         });
-        // HTTP 상태 코드 체크
-        if (!response.ok) {
-            throw new Error(`HTTP error status: ${response.status}`);
-        }
+
+        if (!response.ok) throw new Error(`HTTP error status: ${response.status}`);
 
         const data = await response.json();
-        return data; // TODO: 수정해서 text만 전달
+
+        if (data && data.bubbles && data.bubbles[0]) {
+            return data.bubbles[0].data.description;
+        }
+        return "응답 형식이 올바르지 않습니다.";
 
     } catch (error) {
         console.error('API 호출 실패:', error);

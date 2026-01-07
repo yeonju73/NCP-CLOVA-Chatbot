@@ -7,8 +7,6 @@ import { initFormattedDate } from './ui/date.js';
 const inputTextArea = document.getElementById('send-message')
 const button = document.querySelector('.send-button')
 
-const delay = (ms) => new Promise(res => setTimeout(res, ms));
-
 const sendMessage = async () => {
         const inputText = inputTextArea.value.trim();
         console.log("inputText:", inputText);
@@ -106,28 +104,52 @@ const waitStartBotMessage = () => {
 // Promise로 써서 소멸 되고 결과 출력 되도록 작성.
 const waitEndBotMessage = () => {
     return new Promise((resolve) => {
-        const waitBallon = document.querySelector(".chatbot-ballon-wait").parentElement;
-        waitBallon.classList.add('fadeout');
+        const waitBalloon = document.querySelector(".chatbot-ballon-wait").parentElement;
+        waitBalloon.classList.add('fadeout');
         
-        waitBallon.addEventListener('animationend', () => {
-            waitBallon.remove();
+        waitBalloon.addEventListener('animationend', () => {
+            waitBalloon.remove();
             resolve();
         }, {once : true})
     })
 }
 
-// enter키 이벤트 핸들러
-inputTextArea.addEventListener('keydown', (event) => {
-    // enter와 shift키를 같이 눌렀을 때는 줄바꿈으로 생각
-    // enter만 눌렀을 때
+let isSend = false;
+
+// 전송 핸들러.
+// 키 입력 혹은 버튼 클릭시 발동.
+// 전송하는 동안 버튼 비활성화. 엔터키 입력 무효화.
+const sendHandler = async (event) => {
+    if(isSend) return;
+
     if (event.key === "Enter" && !event.shiftKey) {
         event.preventDefault(); // enter키 기본 동작인 줄바꿈 방지
-        sendMessage();
+        button.classList.add("send-button-hidden");
+        document.querySelector("#disabled-send-button").classList.remove("send-button-hidden");
+        inputTextArea.disabled = true;
+        isSend = true;
+        await sendMessage();
+    } else if (event.target == button || event.target == document.querySelector(".fa-paper-plane")) {
+        button.classList.add("send-button-hidden");
+        document.querySelector("#disabled-send-button").classList.remove("send-button-hidden");
+        inputTextArea.disabled = true;
+        isSend = true;
+        await sendMessage();
     }
-})
+
+    isSend = false;
+    button.classList.remove("send-button-hidden");
+    document.querySelector("#disabled-send-button").classList.add("send-button-hidden");
+    inputTextArea.disabled = false;
+}
+
+// enter키 이벤트 핸들러
+inputTextArea.addEventListener('keydown', sendHandler)
 
 // button 이벤트 핸들러
-button.addEventListener('click', sendMessage);
+button.addEventListener('click', sendHandler);
+
+
 
 
 initThemeToggle();
