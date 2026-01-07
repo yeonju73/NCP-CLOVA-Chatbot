@@ -1,5 +1,5 @@
 export const chatbotApi = async (payload) => {
-    url = '/chat'
+    const url = '/chat';
     try {
         const response = await fetch(url, {
             method: 'POST',

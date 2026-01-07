@@ -4,11 +4,6 @@ import { chatbotApi } from './api/api.js';
 const inputTextArea = document.getElementById('send-message')
 const button = document.querySelector('button')
 
-inputTextArea.addEventListener('input', (event) => {
-    console.log(event.target.value);
-
-})
-
 button.addEventListener('click', async (event) => {
     const inputText = inputTextArea.value.trim();
     console.log("inputText:", inputText);
