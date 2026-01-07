@@ -9,6 +9,7 @@
     <script defer type="module" src="app.js"></script>
 </head>
 <body>
+    <!-- 헤더 부분 -->
     <header>
         <div>
             <button id="themeToggle" class="theme-toggle" aria-label="다크모드 토글">
@@ -23,6 +24,7 @@
         
         
     </header>
+    <!-- 채팅 출력 위치 -->
     <div class="chatgroup">
         <div class="chat-div chat-div-center">
             <div class="chat-date">
@@ -39,51 +41,36 @@
                 반갑습니다.
             </div>
         </div>
-        <div class="chat-div chat-div-left">
-            <div class="ballon chatbot-ballon">
-                안녕하세요.
+        <div class="chat-div chat-div-right">
+            <div class="ballon user-ballon">
+                반갑습니다.
+            </div>
+        </div>
+        <div class="chat-div chat-div-right">
+            <div class="ballon user-ballon">
+                반갑습니다.
+            </div>
+        </div>
+        <div class="chat-div chat-div-right">
+            <div class="ballon user-ballon">
+                반갑습니다.
             </div>
         </div>
         <div class="chat-div chat-div-left">
-            <div class="ballon chatbot-ballon">
-                안녕하세요.
-            </div>
-        </div>
-        <div class="chat-div chat-div-left">
-            <div class="ballon chatbot-ballon">
-                안녕하세요.
-            </div>
-        </div>
-        <div class="chat-div chat-div-left">
-            <div class="ballon chatbot-ballon">
-                안녕하세요.
-            </div>
-        </div>
-        <div class="chat-div chat-div-left">
-            <div class="ballon chatbot-ballon">
-                안녕하세요.
-            </div>
-        </div>
-        <div class="chat-div chat-div-left">
-            <div class="ballon chatbot-ballon">
-                안녕하세요.
-            </div>
-        </div>
-        <div class="chat-div chat-div-left">
-            <div class="ballon chatbot-ballon">
-                안녕하세요.
-            </div>
-        </div>
-        <div class="chat-div chat-div-left">
-            <div class="ballon chatbot-ballon">
-                안녕하세요.
+            <div class="ballon chatbot-ballon chatbot-ballon-wait">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
     </div>
+    <!-- 채팅 입력 위치 -->
     <div class="chatinput">
         <div class="chat-inputfield">
             <textarea id="send-message"></textarea>
             <button class="send-button"><i class="fas fa-paper-plane"></i></button>
+            <!-- 채팅 입력 후 응답 오기 전 까지 비활성화 버튼 -->
+            <button disabled class="send-button send-button-hidden"><i class="far fa-stop-circle"></i></button>
         </div>
     </div>
 </body>
