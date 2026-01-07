@@ -8,10 +8,10 @@ app.use(express.json());
 // 챗봇 대화 요청 엔드포인트
 app.post('/chat', async (req, res) => {
   try {
-    const { content } = req.body;
-    console.log('클라이언트 메시지:', content); // 요청 확인 로그
+    const { text } = req.body;
+    console.log('클라이언트 메시지:', text); // 요청 확인 로그
 
-    const result = await sendToChatbot(content);
+    const result = await sendToChatbot(text);
     res.json(result);
   } catch (error) {
     // 에러의 상세 내용을 서버 터미널에 출력합니다.
