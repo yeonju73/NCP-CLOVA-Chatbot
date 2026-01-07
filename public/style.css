@@ -146,7 +146,7 @@ header {
 }
 
 .ballon {
-    max-width : 80%;
+    max-width : 100%;
     padding : 1rem;
 }
 
@@ -359,4 +359,25 @@ body.dark .moon {
 
 .scroll-bottom-btn i {
     color: var(--chat-bot-ballon-text-color);
+}
+
+.bot-message-wrapper {
+    position: relative;
+    display: inline-block;
+    max-width: 80%;
+}
+
+.copy-btn {
+    position: absolute;
+    right: -25px;
+    bottom: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999999;
+    font-size: 14px;
+}
+
+.copy-btn:hover {
+    color: #333;
 }
