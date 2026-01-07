@@ -118,14 +118,18 @@ let isSend = false;
 // 전송하는 동안 버튼 비활성화. 엔터키 입력 무효화.
 const sendHandler = async (event) => {
     if(isSend) return;
-    button.classList.add("send-button-hidden");
-    document.querySelector("#disabled-send-button").classList.remove("send-button-hidden");
 
     if (event.key === "Enter" && !event.shiftKey) {
         event.preventDefault(); // enter키 기본 동작인 줄바꿈 방지
+        button.classList.add("send-button-hidden");
+        document.querySelector("#disabled-send-button").classList.remove("send-button-hidden");
+        inputTextArea.disabled = true;
         isSend = true;
         await sendMessage();
     } else if (event.target == button || event.target == document.querySelector(".fa-paper-plane")) {
+        button.classList.add("send-button-hidden");
+        document.querySelector("#disabled-send-button").classList.remove("send-button-hidden");
+        inputTextArea.disabled = true;
         isSend = true;
         await sendMessage();
     }
@@ -133,6 +137,7 @@ const sendHandler = async (event) => {
     isSend = false;
     button.classList.remove("send-button-hidden");
     document.querySelector("#disabled-send-button").classList.add("send-button-hidden");
+    inputTextArea.disabled = false;
 }
 
 // enter키 이벤트 핸들러
