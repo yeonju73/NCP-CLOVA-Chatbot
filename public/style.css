@@ -61,6 +61,7 @@ header {
     margin-bottom : 4rem;
 
     background-color: var(--chat-background-color);
+    overflow-y: auto;
 }
 
 .chat-div {
