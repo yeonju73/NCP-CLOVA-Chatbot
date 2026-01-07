@@ -2,6 +2,12 @@ import { chatbotApi } from './api/api.js';
 import { initThemeToggle } from './ui/theme.js'
 import { initScrollButton } from './ui/scroll.js'
 import { initFormattedDate } from './ui/date.js';
+import { initCopyButtons } from "./ui/copy.js";
+
+initThemeToggle();
+initScrollButton();
+initFormattedDate();
+initCopyButtons();
 
 //addEventListener() // 버튼 클릭 -> input 긁어와서 api 요청 보내기
 const inputTextArea = document.getElementById('send-message')
@@ -67,16 +73,34 @@ const addUserMessage = (userText) => {
 const addBotMessage = (botText) => {
     const chat = document.querySelector(".chatgroup")
 
+    // 바깥 chat-div
     const messageDiv = document.createElement("div");
     messageDiv.classList.add("chat-div", "chat-div-left");
 
-    const balloon = document.createElement("div");
-    balloon.classList.add("ballon", "chatbot-ballon")
+    // wrapper
+    const wrapper = document.createElement("div");
+    wrapper.classList.add("bot-message-wrapper");
 
+    // 말풍선
+    const balloon = document.createElement("div");
+    balloon.classList.add("ballon", "chatbot-ballon");
     balloon.innerText = botText;
 
-    messageDiv.appendChild(balloon)
-    chat.appendChild(messageDiv)
+    // 복사 버튼
+    const copyBtn = document.createElement("button");
+    copyBtn.classList.add("copy-btn");
+    copyBtn.setAttribute("aria-label", "복사");
+
+    const icon = document.createElement("i");
+    icon.classList.add("far", "fa-copy");
+
+    copyBtn.appendChild(icon);
+
+    // 조립
+    wrapper.appendChild(balloon);
+    wrapper.appendChild(copyBtn);
+    messageDiv.appendChild(wrapper);
+    chat.appendChild(messageDiv);
 
     messageDiv.scrollIntoView({ behavior: "smooth" });
 }
