@@ -215,8 +215,3 @@ document.querySelector("#yes-button").addEventListener('click', () => {
     initFormattedDate();
     document.querySelector(".modal").classList.remove("modal-show");
 })
-
-
-initThemeToggle();
-initScrollButton();
-initFormattedDate();
