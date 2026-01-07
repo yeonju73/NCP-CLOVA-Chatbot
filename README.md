@@ -62,14 +62,3 @@ NCP CLOVA Chatbot Invoke API에 맞는 요청 payload 생성
 요청 본문 기반으로 HMAC-SHA256 Signature 생성 후 헤더에 포함
 NCP로 요청을 전송하고 응답(JSON)을 수신
 수신한 응답을 프론트로 반환하여 채팅 UI에 출력
-
-#### 기술 스택
-Frontend
-HTML5
-CSS3
-CSS Variables
-Flexbox
-Animation
-JavaScript (ES6+)
-Module 구조
-Async / Await, fetch
