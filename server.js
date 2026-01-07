@@ -1,33 +1,29 @@
-import express, { json } from "express";
-import { chatbotApi } from "./public/api/api.js";
+import express from 'express';
+import { sendToChatbot } from './api.js';
 
 const app = express();
-const PORT = 3000;
+app.use(express.static('public'));
+app.use(express.json());
 
-app.use(express.static("public"));
-app.use(json());
+// 챗봇 대화 요청 엔드포인트
+app.post('/chat', async (req, res) => {
+  try {
+    const { text } = req.body;
+    console.log('클라이언트 메시지:', text); // 요청 확인 로그
 
-app.post("/chatbot", async (request, response) => {
-  const { userId = "demo-user", text } = request.body;
+    const result = await sendToChatbot(text);
+    res.json(result);
+  } catch (error) {
+    // 에러의 상세 내용을 서버 터미널에 출력합니다.
+    console.error('===== 서버 에러 상세 발생 =====');
+    console.error(error);
+    console.error('==============================');
 
-  const payload = {
-    version: "v2",
-    userId,
-    timestamp: Date.now(),
-    bubbles: [
-      {
-        type: "text",
-        data: { description: text },
-      },
-    ],
-    event: "send",
-  };
-
-  const result = await chatbotApi(payload);
-
-  response.send(result);
+    res.status(500).json({
+      message: '서버 내부 오류 발생',
+      detail: error.message
+    });
+  }
 });
 
-app.listen(PORT, () =>
-  console.log(`Express 서버가 http://localhost:${PORT} 에서 대기중`)
-);
+app.listen(3000, () => console.log('Server running on http://localhost:3000'));
