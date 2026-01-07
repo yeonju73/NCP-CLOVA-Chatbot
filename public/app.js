@@ -39,14 +39,14 @@ const sendMessage = async () => {
         if (typeof chatbotResult === "object") {
             let message = chatbotResult.cover.data.description;
             chatbotResult.contentTable.forEach((row) => {
-            row.forEach((col) => {
-              if (col.data && col.data.type === "button") {
-                const title = col.data.title;
-                const linkUrl = col.data.data.action.data.url;
-                message += `<br/><a href="${linkUrl}" target="_blank">${title}</a>`;
-              }
+                row.forEach((col) => {
+                if (col.data && col.data.type === "button") {
+                    const title = col.data.title;
+                    const linkUrl = col.data.data.action.data.url;
+                    message += `<br/><a href="${linkUrl}" target="_blank">${title}</a>`;
+                }
+                });
             });
-          });
             addBotMessage(message);
         }
         else if (chatbotResult === null || typeof chatbotResult !== "string") {
