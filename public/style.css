@@ -17,6 +17,8 @@
     --chat-wait-dot-basic-color : #e0e0e0;
     --chat-wait-dot-change-color : #888888;
     --chat-title-color: #000000;
+
+    --chat-head-close-icon-color: #000000;
 }
 
 body.dark {
@@ -32,6 +34,8 @@ body.dark {
 
     --chat-date-background-color : #3a3a3c;
     --chat-title-color: #FFFFFF;
+
+    --chat-head-close-icon-color: #FFFFFF;
 }
 
 
@@ -86,7 +90,8 @@ header {
 
 .close-icon {
     font-size : 1rem;
-    line-height : 1.2
+    line-height : 1.2;
+    color: var(--chat-head-close-icon-color);
 }
 
 
@@ -148,7 +153,6 @@ header {
     border-radius : 0 15px 15px 15px;
     background-color: var(--chat-bot-ballon-color);
     color : var(--chat-bot-ballon-text-color);
-    color : black;
 
     animation : chatbot-ballon-animation-fadein 1s ease-out;
 
