@@ -172,3 +172,50 @@ inputTextArea.addEventListener('keydown', sendHandler)
 
 // button 이벤트 핸들러
 button.addEventListener('click', sendHandler);
+
+// 우측 상단 X 버튼 동작
+document.querySelector(".close-button").addEventListener('click', () => {
+    document.querySelector(".modal").classList.add("modal-show");
+    // 모달창 뒷부분 스크롤 막기.
+    document.body.classList.add("body-hidden");
+})
+
+// 모달창 닫는 동작
+document.querySelector(".modal").addEventListener('click', () => {
+    document.querySelector(".modal").classList.remove("modal-show");
+    document.body.classList.remove("body-hidden");
+})
+
+// 이벤트 버블링 방지.
+document.querySelector(".modal-window").addEventListener('click', (event) => {
+    event.stopPropagation();
+})
+
+document.querySelector("#no-button").addEventListener('click', () => {
+    document.querySelector(".modal").classList.remove("modal-show");
+    document.body.classList.remove("body-hidden");
+})
+
+// 대화 초기화.
+document.querySelector("#yes-button").addEventListener('click', () => {
+    document.querySelector(".chatgroup").innerHTML = `<div class="chat-div chat-div-center">
+            <div id="chatDate" class="chat-date"></div>
+        </div>
+        <div class="chat-div chat-div-left">
+            <div class="bot-message-wrapper">
+                <div class="ballon chatbot-ballon">
+                    안녕하세요! 우리FISA 챗봇입니다.<br>무엇을 도와드릴까요?
+                </div>
+                <button class="copy-btn" aria-label="복사">
+                    <i class="far fa-copy"></i>
+                </button>
+            </div>
+        </div>`;
+    initFormattedDate();
+    document.querySelector(".modal").classList.remove("modal-show");
+})
+
+
+initThemeToggle();
+initScrollButton();
+initFormattedDate();
