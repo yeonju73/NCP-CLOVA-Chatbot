@@ -4,28 +4,37 @@ import { chatbotApi } from './api/api.js';
 const inputTextArea = document.getElementById('send-message')
 const button = document.querySelector('.send-button')
 
+const delay = (ms) => new Promise(res => setTimeout(res, ms));
+
 const sendMessage = async () => {
-    const inputText = inputTextArea.value.trim();
-    console.log("inputText:", inputText);
+        const inputText = inputTextArea.value.trim();
+        console.log("inputText:", inputText);
+    
+        // 입력값이 공백일 경우 버튼 클릭 무시
+        if (!inputText) return;
+    
+        // 사용자 말풍선 생성
+        addUserMessage(inputText);
+    
+        // 입력창 초기화
+        inputTextArea.value = "";
 
-    // 입력값이 공백일 경우 버튼 클릭 무시
-    if (!inputText) return;
+        // 대기 중 말풍선 생성
+        waitStartBotMessage();
 
-    // 사용자 말풍선 생성
-    addUserMessage(inputText);
+        const chatbotResult = await callChatbotApi(inputText);
 
-    // 입력창 초기화
-    inputTextArea.value = "";
-    const chatbotResult = await callChatbotApi(inputText);
-
-    // 챗봇 말풍선 생성
-    if (chatbotResult === null) {
-        addBotMessage("현재 챗봇 응답이 불가능합니다.");
-        return;
+        // 대기 중 말풍선 소멸
+        await waitEndBotMessage();
+        
+        // 챗봇 말풍선 생성
+        if (chatbotResult === null) {
+            addBotMessage("현재 챗봇 응답이 불가능합니다.");
+            return;
+        }
+        addBotMessage(chatbotResult);
     }
-    addBotMessage(chatbotResult);
-}
-
+    
 const callChatbotApi = async (inputText) => {
     const payload = {
         text: inputText
@@ -69,6 +78,39 @@ const addBotMessage = (botText) => {
     chat.appendChild(messageDiv)
 
     messageDiv.scrollIntoView({ behavior: "smooth" });
+}
+
+// 대기 중 말풍선 생성 함수
+const waitStartBotMessage = () => {
+    const chat = document.querySelector(".chatgroup");
+    const messageDiv = document.createElement("div");
+    messageDiv.classList.add("chat-div", "chat-div-left");
+
+    const balloon = document.createElement("div");
+    balloon.classList.add("ballon", "chatbot-ballon", "chatbot-ballon-wait");
+
+    balloon.appendChild(document.createElement("span"));
+    balloon.appendChild(document.createElement("span"));
+    balloon.appendChild(document.createElement("span"));
+
+    messageDiv.appendChild(balloon);
+    chat.appendChild(messageDiv);
+
+    messageDiv.scrollIntoView({ behavior: "smooth" });
+}
+
+// 대기 중 말풍선 소멸 함수
+// Promise로 써서 소멸 되고 결과 출력 되도록 작성.
+const waitEndBotMessage = () => {
+    return new Promise((resolve) => {
+        const waitBallon = document.querySelector(".chatbot-ballon-wait").parentElement;
+        waitBallon.classList.add('fadeout');
+        
+        waitBallon.addEventListener('animationend', () => {
+            waitBallon.remove();
+            resolve();
+        }, {once : true})
+    })
 }
 
 // enter키 이벤트 핸들러
