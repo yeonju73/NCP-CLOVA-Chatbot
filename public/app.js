@@ -36,11 +36,25 @@ const sendMessage = async () => {
         await waitEndBotMessage();
         
         // 챗봇 말풍선 생성
-        if (chatbotResult === null || typeof chatbotResult !== "string") {
-            addBotMessage("현재 서버와 연결이 원활하지 않아요 😥\n잠시 후 다시 시도해 주세요.");
-            return;
+        if (typeof chatbotResult === "object") {
+            let message = chatbotResult.cover.data.description;
+            chatbotResult.contentTable.forEach((row) => {
+                row.forEach((col) => {
+                if (col.data && col.data.type === "button") {
+                    const title = col.data.title;
+                    const linkUrl = col.data.data.action.data.url;
+                    message += `<br/><a href="${linkUrl}" target="_blank">${title}</a>`;
+                }
+                });
+            });
+            addBotMessage(message);
         }
-        addBotMessage(chatbotResult);
+        else if (chatbotResult === null || typeof chatbotResult !== "string") {
+            addBotMessage("아직 해당 질문에 대한 답변을 찾지 못했어요 😢\n조금 다르게 표현해서 다시 물어봐 주세요!");
+            return;
+        } else {
+            addBotMessage(chatbotResult);
+        }
     }
     
 const callChatbotApi = async (inputText) => {
@@ -85,7 +99,7 @@ const addBotMessage = (botText) => {
     // 말풍선
     const balloon = document.createElement("div");
     balloon.classList.add("ballon", "chatbot-ballon");
-    balloon.innerText = botText;
+    balloon.innerHTML = botText;
 
     // 복사 버튼
     const copyBtn = document.createElement("button");

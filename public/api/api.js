@@ -25,14 +25,7 @@ export const chatbotApi = async (payload) => {
 
         // 링크 버튼들이 있는 경우 텍스트 뒤에 붙여줌
         if (bubble.data.contentTable) {
-          bubble.data.contentTable.forEach((row) => {
-            row.forEach((col) => {
-              if (col.data && col.data.type === "button") {
-                const linkUrl = col.data.data.action.data.url;
-                message += `\n- ${linkUrl}`;
-              }
-            });
-          });
+            return bubble.data;
         }
         return message;
       }
