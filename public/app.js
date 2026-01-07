@@ -5,7 +5,10 @@ dotenv.config();
 
 // NCP 콘솔에서 확인한 정보를 .env에 저장하세요
 const INVOKE_URL = process.env.CHATBOT_INVOKE_URL;
-const SECRET_KEY = process.env.CHATBOT_SECRET_KEY;
+const SECRET_KEY = process.env.CHATBOT_INVOKE_SECRET;
+
+console.log('로드된 URL:', INVOKE_URL);
+console.log('로드된 KEY 존재여부:', SECRET_KEY ? 'Yes' : 'No');
 
 export async function sendToChatbot(text) {
     const timestamp = Date.now();
