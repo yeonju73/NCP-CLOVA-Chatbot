@@ -25,13 +25,14 @@ header {
     left : 0;
 }
 
-chatgroup {
+.chatgroup {
     display : block;
     width : 100%;
     min-height: calc(100vh - 45px);
     margin-top : 45px;
 
     background-color: var(--chat-background-color);
+    overflow-y: auto;
 }
 
 .chat-div {
@@ -62,7 +63,7 @@ chatgroup {
     background-color: var(--chat-user-ballon-color);
 }
 
-chatinput {
+.chatinput {
     display : block;
     background-color: var(--chat-input-background-color);
     width : 100%;
