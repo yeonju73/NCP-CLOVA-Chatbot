@@ -83,3 +83,8 @@ inputTextArea.addEventListener('keydown', (event) => {
 
 // button 이벤트 핸들러
 button.addEventListener('click', sendMessage);
+
+document.getElementById("themeToggle")
+    .addEventListener("click", () => {
+        document.body.classList.toggle("dark");
+    });

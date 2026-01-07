@@ -5,13 +5,33 @@
 :root {
     --chat-background-color : #EFEFEF;
     --chat-bot-ballon-color : #FFFFFF;
+    --chat-bot-ballon-text-color: #000000;
     --chat-user-ballon-color : #5C6DFF;
+
     --chat-input-background-color : #F6F8FE;
     --chat-input-field-color : #FFFFFF;
+    --chat-input-field-text-color: #000000;
     --chat-input-button-color : #9499A0;
+
     --chat-date-background-color : #848A92;
     --chat-wait-dot-basic-color : #e0e0e0;
     --chat-wait-dot-change-color : #888888;
+    --chat-title-color: #000000;
+}
+
+body.dark {
+    --chat-background-color : #121212;
+    --chat-bot-ballon-color : #484747;
+    --chat-bot-ballon-text-color: #FFFFFF;
+    --chat-user-ballon-color : #5C6DFF;
+
+    --chat-input-background-color : #1c1c1e;
+    --chat-input-field-color : #2c2c2e;
+    --chat-input-field-text-color: #FFFFFF;
+    --chat-input-button-color : #9aa0a6;
+
+    --chat-date-background-color : #3a3a3c;
+    --chat-title-color: #FFFFFF;
 }
 
 
@@ -45,16 +65,23 @@ header {
     grid-column : 2;
     font-size: 1rem;
     line-height: 1.2;
+    color: var(--chat-title-color);
 }
 
 .header-icons {
+    background-color: var(--chat-background-color);
     display:flex;
     flex-direction: row-reverse;
 }
 
 .close-button {
+    background-color: var(--chat-background-color);
     border : none;
     cursor: pointer;
+}
+
+.send-button i {
+    color: var(--chat-title-color);
 }
 
 .close-icon {
@@ -120,6 +147,7 @@ header {
 .chatbot-ballon {
     border-radius : 0 15px 15px 15px;
     background-color: var(--chat-bot-ballon-color);
+    color : var(--chat-bot-ballon-text-color);
     color : black;
 
     animation : chatbot-ballon-animation-fadein 1s ease-out;
@@ -232,6 +260,8 @@ textarea {
     border : none;
     resize: none;
     overflow: hidden;
+    background-color: var(--chat-input-field-color);
+    color: var(--chat-input-field-text-color);
 }
 
 textarea:focus {
@@ -243,6 +273,45 @@ textarea:focus {
     border : none;
     background-color: var(--chat-input-field-color);
     cursor: pointer;
+}
+
+.theme-toggle {
+    background-color: var(--chat-background-color);
+    position: relative;
+    width: 40px;
+    height: 40px;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.theme-toggle i {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.sun {
+    color: #f5c518;
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.moon {
+    color: #9aa0a6;
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+body.dark .sun {
+    opacity: 0;
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+body.dark .moon {
+    opacity: 1;
+    transform: translate(-50%, -50%) rotate(0deg);
 }
 
 .send-button-hidden {
