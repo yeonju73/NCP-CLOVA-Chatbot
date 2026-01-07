@@ -5,26 +5,26 @@ const inputTextArea = document.getElementById('send-message')
 const button = document.querySelector('.send-button')
 
 const sendMessage = async () => {
-        const inputText = inputTextArea.value.trim();
-        console.log("inputText:", inputText);
-    
-        // 입력값이 공백일 경우 버튼 클릭 무시
-        if (!inputText) return;
-    
-        // 사용자 말풍선 생성
-        addUserMessage(inputText);
-    
-        // 입력창 초기화
-        inputTextArea.value = "";
-        const chatbotResult = await callChatbotApi(inputText);
-    
-        // 챗봇 말풍선 생성
-        if (chatbotResult === null) {
-            addBotMessage("현재 챗봇 응답이 불가능합니다.");
-            return;
-        }
-        addBotMessage(chatbotResult);
+    const inputText = inputTextArea.value.trim();
+    console.log("inputText:", inputText);
+
+    // 입력값이 공백일 경우 버튼 클릭 무시
+    if (!inputText) return;
+
+    // 사용자 말풍선 생성
+    addUserMessage(inputText);
+
+    // 입력창 초기화
+    inputTextArea.value = "";
+    const chatbotResult = await callChatbotApi(inputText);
+
+    // 챗봇 말풍선 생성
+    if (chatbotResult === null) {
+        addBotMessage("현재 챗봇 응답이 불가능합니다.");
+        return;
     }
+    addBotMessage(chatbotResult);
+}
 
 const callChatbotApi = async (inputText) => {
     const payload = {
@@ -84,7 +84,38 @@ inputTextArea.addEventListener('keydown', (event) => {
 // button 이벤트 핸들러
 button.addEventListener('click', sendMessage);
 
+// dark mode
 document.getElementById("themeToggle")
     .addEventListener("click", () => {
         document.body.classList.toggle("dark");
     });
+
+// 플로팅 버튼
+const chat = document.querySelector(".chatgroup");
+const scrollBtn = document.getElementById("scrollBottomBtn");
+
+const isScrolledToBottom = () => {
+    // 스크롤 가능한 전체 길이
+    const totalScrollableHeight = document.body.scrollHeight - window.innerHeight;
+    
+    // 현재 스크롤 위치
+    const currentScroll = window.scrollY;
+
+    // 아래 30% 이내인지 판별
+    return (currentScroll / totalScrollableHeight) >= 0.7;
+};
+
+window.addEventListener("scroll", () => {
+    if (isScrolledToBottom()) {
+        scrollBtn.style.display = "none";
+    } else {
+        scrollBtn.style.display = "block";
+    }
+});
+
+scrollBtn.addEventListener("click", () => {
+    window.scrollTo({
+        top: chat.scrollHeight,
+        behavior: "smooth",
+    });
+});
