@@ -1,6 +1,9 @@
 # NCP-CLOVA-Chatbot
 우리FISA NCP CLOVA Chatbot 프로젝트입니다.
 
+<img width="400" height="700" alt="image" src="https://github.com/user-attachments/assets/dcd08182-edf7-4a2c-b572-24556a5093d4" />
+
+
 ## 우리FISA 상담 챗봇
 
 우리FISA 아카데미 수강생을 위한 웹 기반 상담 챗봇입니다.
