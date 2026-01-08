@@ -1,10 +1,9 @@
 # NCP-CLOVA-Chatbot
 우리FISA NCP CLOVA Chatbot 프로젝트입니다.
 
-<img width="400" height="700" alt="image" src="https://github.com/user-attachments/assets/dcd08182-edf7-4a2c-b572-24556a5093d4" />
-
-
 ## 우리FISA 상담 챗봇
+
+<img width="400" height="700" alt="image" src="https://github.com/user-attachments/assets/dcd08182-edf7-4a2c-b572-24556a5093d4" />
 
 우리FISA 아카데미 수강생을 위한 웹 기반 상담 챗봇입니다.
 사용자는 자연스럽게 질문을 입력하고, 챗봇의 응답을 실시간으로 확인할 수 있습니다.
@@ -62,3 +61,18 @@
 - 요청 본문 기반으로 HMAC-SHA256 Signature 생성 후 헤더에 포함
 - NCP로 요청을 전송하고 응답을 수신
 - 수신한 응답을 프론트로 반환하여 채팅 UI에 출력
+
+## 🛠 기술 스택
+
+* **Frontend**
+  * HTML5
+  * CSS3
+  * JavaScript (ES6+)
+* **Backend**
+  * Node.js
+  * Express.js
+* **AI / External API**
+  * Naver Cloud Platform (NCP) Clova Chatbot API
+* **Communication**
+  * JSON
+  * Fetch API
