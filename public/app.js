@@ -37,7 +37,7 @@ const sendMessage = async () => {
         
         // 챗봇 말풍선 생성
         if (chatbotResult === null) {
-            addBotMessage("현재 서버와 연결이 원활하지 않아요 😥\n잠시 후 다시 시도해 주세요.");
+            addBotMessage("현재 서버와 연결이 원활하지 않아요 😥\n잠시 후 다시 시도해 주세요.", "text");
         }
         else if (typeof chatbotResult === "object") {
             let message = chatbotResult.cover.data.description;
